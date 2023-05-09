@@ -1,3 +1,4 @@
+import { TFormFields } from "../../page/AdminCabinet/Course/Form";
 import { ICourseResult } from "../queries/usetGetCourses";
 import { ETagType, api } from "../utils";
 
@@ -5,9 +6,9 @@ import { ETagType, api } from "../utils";
 
 const extendedApi = api.injectEndpoints({
     endpoints: (build) => ({
-        addCourse: build.mutation<any, ICourseResult>({
+        addCourse: build.mutation<any, TFormFields>({
             query: (book) => ({
-                url: "/course/add",
+                url: "/course/save",
                 method: "POST",
                 body: book,
             }),

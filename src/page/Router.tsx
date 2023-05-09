@@ -13,6 +13,7 @@ import { Profile } from "./Profile";
 import { EUserRole } from "../models/Enums";
 import { NotFound } from "./Not-found";
 import Catalog from "./Catalog";
+import CoursePage from "./AdminCabinet/Course";
 
 const StyledLayout = styled(PageLayout)`
   display: block;
@@ -56,6 +57,8 @@ export const Routing = (): ReactElement => {
                                 <Route>
                                     <Route path={EAppRoutes.AUTH} element={<Navigate to={EAppRoutes.PROFILE} />} />
                                     <Route path={EAppRoutes.PROFILE} element={<Profile />} />
+                                    <Route path={EAppRoutes.MANAGE_COURSE} element={<CoursePage />} />
+
                                 </Route> : null
                             }
 

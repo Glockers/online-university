@@ -6,8 +6,7 @@ export enum ESortType {
     MONY_LOW = "monyLow",
 }
 
-enum EAppCourseStatus {
-
+export enum EAppCourseStatus {
     ACTIVE = "active",
     CLOSED = "closed"
 }

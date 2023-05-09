@@ -2,13 +2,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { RootState } from '../store/store'
 
 export enum ETagType {
-    COURSE = "Courses"
+    COURSE = "Courses",
+    USER = "User"
 }
 
 
 export const api = createApi({
     reducerPath: "api",
-    tagTypes: ["User", ETagType.COURSE],
+    tagTypes: [...Object.values(ETagType)],
     baseQuery: fetchBaseQuery({
         baseUrl: "http://192.168.0.106:8000/api",
         responseHandler: "content-type",
