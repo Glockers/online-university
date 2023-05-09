@@ -1,0 +1,36 @@
+{
+  "name": "front",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@hookform/resolvers": "^3.1.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@tanstack/react-query": "^4.29.5",
+    "antd": "^5.4.7",
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.11.1",
+    "react-toastify": "^9.1.2",
+    "redux-logger": "^3.0.6",
+    "styled-components": "^6.0.0-rc.1",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@types/redux-logger": "^3.0.9",
+    "@vitejs/plugin-react": "^2.2.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3"
+  }
+}
