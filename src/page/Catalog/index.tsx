@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { PageLayout } from '../../layouts';
-import { Input, Select } from 'antd';
-import { ESortType, useGetCoursesQuery } from '../../service/queries/usetGetCourses';
+import { Input, Select, Spin } from 'antd';
+import { ESortType, ICourseResult, useGetCoursesQuery } from '../../service/queries/usetGetCourses';
+import { CourseCard } from './CardCourse';
+import { IResultOrderCourse, useBuyCourseMutation } from '../../service/mutations/buyCourseMutation';
+import { useAppSelector } from '../../utils/hooks/redux';
+import { useNotificationContext } from '../../utils/notification';
+import { useNavigate } from 'react-router-dom';
+import { EAppRoutes } from '../Router';
 
 const Container = styled(PageLayout)`
   width: 100%;
@@ -24,11 +30,32 @@ const Wrapper = styled.div`
 export default function Catalog() {
     const [search, setSearch] = useState<string>();
     const [sort, setSort] = useState<ESortType>();
+    const [buyCourse, { isError }] = useBuyCourseMutation();
+    const { data, isLoading } = useGetCoursesQuery()
+    const auth = useAppSelector(value => value.auth);
+    const { showMessage } = useNotificationContext()
+    const nav = useNavigate();
 
-    const { data } = useGetCoursesQuery()
+    const getSelectedCourse = (selectedCourse: ICourseResult) => {
+        buyCourse({
+            client: auth.user,
+            course: selectedCourse
+        }).unwrap().then(response => {
+            window.location.href = response.url;
+        })
+    }
 
-    console.log(data);
 
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const success = urlParams.get('success');
+        if (success === 'true') {
+            nav(EAppRoutes.CATALOG)
+            showMessage("Оплата прошла успешно", "error")
+            console.log('Success!');
+        }
+    }, []);
 
     return (
         <Container style={{ display: "grid" }}>
@@ -51,6 +78,17 @@ export default function Catalog() {
                         { value: ESortType.MONY_LOW, label: "BYN по убыванию" },
                     ]}
                 />
+            </Wrapper>
+            <Wrapper>
+                {data?.map((book) => (
+                    <CourseCard
+                        key={book.id}
+                        course={book}
+                        onGetselectedCourse={getSelectedCourse}
+                    // onRemove={removeItem}
+                    />
+                ))}
+                {isLoading && <Spin size="large" />}
             </Wrapper>
 
         </Container>

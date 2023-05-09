@@ -49,6 +49,12 @@ export default function Sidebar() {
                     label: "Управ. пользователями",
                     onClick: () => navigate(EAppRoutes.MANAGE_USERS),
                 },
+                {
+                    key: EAppRoutes.MANAGE_PAYMENT,
+                    icon: <UsbOutlined />,
+                    label: "Управ. оплатами",
+                    onClick: () => navigate(EAppRoutes.MANAGE_PAYMENT),
+                },
             ]),
         ],
         [isAuthorized, navigate, role]

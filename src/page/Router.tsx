@@ -15,6 +15,7 @@ import { NotFound } from "./Not-found";
 import Catalog from "./Catalog";
 import CoursePage from "./AdminCabinet/Course";
 import UsersPage from "./AdminCabinet/Users";
+import PaymentManagmentPage from "./AdminCabinet/PaymentManagment";
 
 const StyledLayout = styled(PageLayout)`
   display: block;
@@ -30,6 +31,8 @@ export enum EAppRoutes {
     NOT_FOUND = "*",
     MANAGE_COURSE = "/manage-course",
     MANAGE_USERS = "/manage-users",
+    MANAGE_PAYMENT = "/manage-payments",
+
 }
 
 const commonRoute = [
@@ -60,15 +63,17 @@ export const Routing = (): ReactElement => {
                                     <Route path={EAppRoutes.PROFILE} element={<Profile />} />
                                     <Route path={EAppRoutes.MANAGE_COURSE} element={<CoursePage />} />
                                     <Route path={EAppRoutes.MANAGE_USERS} element={<UsersPage />} />
-
+                                    <Route path={EAppRoutes.MANAGE_PAYMENT} element={<PaymentManagmentPage />} />
 
                                 </Route> : null
                             }
 
-                            <Route path={EAppRoutes.NOT_FOUND} element={<NotFound />} />
                             <Route path={EAppRoutes.CATALOG} element={<Catalog />} />
                             <Route path={EAppRoutes.PROFILE} element={<Navigate to={EAppRoutes.AUTH} />} />
                             <Route path={EAppRoutes.AUTH} element={<AuthRootComponent />} />
+
+                            <Route path={EAppRoutes.NOT_FOUND} element={<NotFound />} />
+
                         </Routes>
                     </main>
                     <AppFooter />

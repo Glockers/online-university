@@ -21,7 +21,6 @@ export default function CoursePage() {
     return (
         <Container>
             <Title>Управление курсами</Title>
-
             <AddForm />
             <CourseTable />
         </Container >

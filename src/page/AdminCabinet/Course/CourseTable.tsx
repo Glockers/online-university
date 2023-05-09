@@ -40,7 +40,6 @@ function CourseTable(): ReactElement {
                         console.error(err)
                     })
                 }}
-
             />
         </>
     )

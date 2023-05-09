@@ -3,7 +3,8 @@ import { RootState } from '../store/store'
 
 export enum ETagType {
     COURSE = "Courses",
-    USER = "User"
+    USER = "User",
+    ORDER = "Order"
 }
 
 
