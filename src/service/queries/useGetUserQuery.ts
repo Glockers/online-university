@@ -2,8 +2,8 @@ import { ETagType, api } from "../utils";
 
 const extendedApi = api.injectEndpoints({
     endpoints: builder => ({
-        getCourses: builder.query<any[], void>({
-            query: () => "/course/getAll",
+        getUsers: builder.query<any[], void>({
+            query: () => "/user/getAll",
             providesTags: (result) =>
                 result
                     ? [
@@ -14,3 +14,6 @@ const extendedApi = api.injectEndpoints({
         })
     })
 })
+
+
+export const { useGetUsersQuery } = extendedApi

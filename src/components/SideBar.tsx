@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { EUserRole } from "../models/Enums";
 import { useAuth } from "../utils/hooks/useAuth";
 import { EAppRoutes } from "../page/Router";
-import { AlertTwoTone, PieChartOutlined } from "@ant-design/icons";
+import { AlertTwoTone, PieChartOutlined, UsbOutlined } from "@ant-design/icons";
 
 
 type MenuItem = Required<MenuProps>["items"][number] & {
@@ -42,6 +42,12 @@ export default function Sidebar() {
                     icon: <AlertTwoTone />,
                     label: "Управ. курсами",
                     onClick: () => navigate(EAppRoutes.MANAGE_COURSE),
+                },
+                {
+                    key: EAppRoutes.MANAGE_USERS,
+                    icon: <UsbOutlined />,
+                    label: "Управ. пользователями",
+                    onClick: () => navigate(EAppRoutes.MANAGE_USERS),
                 },
             ]),
         ],

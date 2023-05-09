@@ -1,8 +1,9 @@
+import { IUserAuth } from "../../models/IUserAuth";
 import { ETagType, api } from "../utils";
 
 const extendedApi = api.injectEndpoints({
     endpoints: (build) => ({
-        deleteUser: build.mutation<any, any>({
+        deleteUser: build.mutation<any, IUserAuth>({
             query: (user) => ({
                 url: "/user/delete",
                 method: "POST",
@@ -10,7 +11,7 @@ const extendedApi = api.injectEndpoints({
             }),
             invalidatesTags: [{ type: ETagType.USER, id: "LIST" }]
         }),
-        updateUser: build.mutation<any, any>({
+        updateUser: build.mutation<any, IUserAuth>({
             query: (user) => ({
                 url: "/user/update",
                 method: "POST",
