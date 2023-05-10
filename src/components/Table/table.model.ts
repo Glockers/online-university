@@ -3,7 +3,7 @@ import { ColumnProps } from "antd/es/table";
 
 export interface IEditableColumnProps<T> extends ColumnProps<T> {
     editable?: boolean;
-    dataIndex?: keyof T & string;
+    dataIndex?: keyof T & string | any[];
 }
 
 

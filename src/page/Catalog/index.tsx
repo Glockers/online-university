@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { PageLayout } from '../../layouts';
 import { Input, Select, Spin } from 'antd';
-import { ESortType, ICourseResult, useGetCoursesQuery } from '../../service/queries/usetGetCourses';
+import { EAppCourseStatus, ESortType, ICourseResult, useGetCoursesQuery } from '../../service/queries/usetGetCourses';
 import { CourseCard } from './CardCourse';
 import { IResultOrderCourse, useBuyCourseMutation } from '../../service/mutations/buyCourseMutation';
 import { useAppSelector } from '../../utils/hooks/redux';
@@ -42,18 +42,22 @@ export default function Catalog() {
             course: selectedCourse
         }).unwrap().then(response => {
             window.location.href = response.url;
+        }).catch(err => {
+            showMessage(err.data, "error")
         })
     }
 
 
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-
-        const success = urlParams.get('success');
-        if (success === 'true') {
+        const query = new URLSearchParams(window.location.search);
+        console.log(query)
+        if (query.get("/success")) {
             nav(EAppRoutes.CATALOG)
-            showMessage("Оплата прошла успешно", "error")
-            console.log('Success!');
+            showMessage("Оплата прошла успешно", "success")
+        }
+        else if (query.get("canceled")) {
+            nav(EAppRoutes.CATALOG)
+            showMessage("Оплата отменена", "error")
         }
     }, []);
 
@@ -80,17 +84,17 @@ export default function Catalog() {
                 />
             </Wrapper>
             <Wrapper>
-                {data?.map((book) => (
-                    <CourseCard
-                        key={book.id}
-                        course={book}
-                        onGetselectedCourse={getSelectedCourse}
-                    // onRemove={removeItem}
-                    />
-                ))}
+                {data
+                    ?.filter((element) => element.status === EAppCourseStatus.ACTIVE)
+                    .map((course) => (
+                        <CourseCard
+                            key={course.id}
+                            course={course}
+                            onGetselectedCourse={getSelectedCourse}
+                        />
+                    ))}
                 {isLoading && <Spin size="large" />}
             </Wrapper>
-
         </Container>
-    )
+    );
 }

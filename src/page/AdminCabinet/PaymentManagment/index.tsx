@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect } from 'react'
 import styled from 'styled-components';
 import { PageLayout } from '../../../layouts';
 import TableFactory from '../../../components/Table/table';
+import { PaymentTable } from './PaymentTable';
 
 
 
@@ -21,14 +22,12 @@ const Title = styled.h1`
 function PaymentManagmentPage(): ReactElement {
     useEffect(() => {
 
-        return () => {
-            console.log("Я покинул страницу")
-        }
+
     }, [])
 
     return <Container>
         <Title>Управление оплаченными курсами</Title>
-
+        <PaymentTable />
     </Container>;
 }
 

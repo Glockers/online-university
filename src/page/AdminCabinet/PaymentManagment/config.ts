@@ -1,39 +1,36 @@
+import moment from "moment";
 import { IEditableColumnProps } from "../../../components/Table/table.model";
-import { ICourseResult } from "../../../service/queries/usetGetCourses";
+import { EAppCourseProgressive, IResultPaymentCourses } from "../../../service/queries/useGetPaymentCourses";
 
 
 
-export const columns: IEditableColumnProps<ICourseResult>[] = [
+export const columns: IEditableColumnProps<IResultPaymentCourses>[] = [
     {
-        title: "ID пользователя",
+        title: "ID",
         dataIndex: "id",
     },
     {
-        title: "Название курса",
-        dataIndex: "title",
-        editable: true,
-        sorter: {
-            compare: (a, b) => {
-                if (a.title && b.title) {
-                    return a.title.localeCompare(b.title);
-                }
-                return a.title ? -1 : b.title ? 1 : 0;
-            },
-        },
+        title: "stipe платеж",
+        dataIndex: "stripe_id",
     },
     {
-        title: "Описание курса",
-        dataIndex: "description",
+        title: "Дата оплаты",
+        dataIndex: "localDateTime",
+        render: (text, record) => moment(record.localDateTime).format("YYYY-MM-DD HH:mm")
+    },
+    {
+        title: "Клиент ID",
+        dataIndex: ["user", "id"],
         editable: true,
     },
     {
-        title: "Cтоимость",
-        dataIndex: "cost",
+        title: "Номер курса",
+        dataIndex: ["course", "id"],
         editable: true,
     },
     {
-        title: "Статус курса",
-        dataIndex: "status",
+        title: "Статус прохождения",
+        dataIndex: "courseProgressStatus",
         editable: true,
     },
 ];

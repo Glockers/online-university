@@ -4,7 +4,8 @@ import { RootState } from '../store/store'
 export enum ETagType {
     COURSE = "Courses",
     USER = "User",
-    ORDER = "Order"
+    ORDER = "Order",
+    PAYMENT_COURSES = "PaymentCourses"
 }
 
 

@@ -52,6 +52,7 @@ type TError = {
 
 export const useAuth = () => {
     const [user, setUser] = useState<any>();
+
     const dispatch = useAppDispatch();
     const { showMessage } = useNotificationContext();
     const activeUser = useAppSelector(value => value.auth)
@@ -104,6 +105,7 @@ export const useAuth = () => {
         user: activeUser.user,
         isAuthorized: activeUser.isLogged,
         role: activeUser.user.role,
+        isLoading,
         logout,
         LogIn,
     }

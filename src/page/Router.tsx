@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
 import { AuthRootComponent } from "./Auth"
 import { useAuth } from "../utils/hooks/useAuth";
 import { ToastContainer } from "react-toastify";
-import { Layout } from "antd";
+import { Layout, Spin } from "antd";
 import Sidebar from "../components/SideBar";
 import styled from "styled-components";
 import { PageLayout } from "../layouts";
@@ -16,6 +16,7 @@ import Catalog from "./Catalog";
 import CoursePage from "./AdminCabinet/Course";
 import UsersPage from "./AdminCabinet/Users";
 import PaymentManagmentPage from "./AdminCabinet/PaymentManagment";
+import ManageTask from "./AdminCabinet/ManageTask/ManageTask";
 
 const StyledLayout = styled(PageLayout)`
   display: block;
@@ -32,6 +33,7 @@ export enum EAppRoutes {
     MANAGE_COURSE = "/manage-course",
     MANAGE_USERS = "/manage-users",
     MANAGE_PAYMENT = "/manage-payments",
+    MANAGE_TASK = "/manage-task",
 
 }
 
@@ -40,7 +42,7 @@ const commonRoute = [
 ]
 
 export const Routing = (): ReactElement => {
-    const { role } = useAuth();
+    const { role, isLoading } = useAuth();
     return (
         <>
             <Layout style={{ height: "100vh" }}>
@@ -48,6 +50,7 @@ export const Routing = (): ReactElement => {
                 <StyledLayout style={{ display: "block" }}>
                     <AppHeader />
                     <main>
+
                         <Routes>
                             {role === EUserRole.USER ?
                                 <Route >
@@ -64,6 +67,7 @@ export const Routing = (): ReactElement => {
                                     <Route path={EAppRoutes.MANAGE_COURSE} element={<CoursePage />} />
                                     <Route path={EAppRoutes.MANAGE_USERS} element={<UsersPage />} />
                                     <Route path={EAppRoutes.MANAGE_PAYMENT} element={<PaymentManagmentPage />} />
+                                    <Route path={EAppRoutes.MANAGE_TASK} element={<ManageTask />} />
 
                                 </Route> : null
                             }
