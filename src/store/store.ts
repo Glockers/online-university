@@ -15,7 +15,9 @@ const logger = createLogger({
 
 export const setupStore = configureStore({
     reducer: reducers,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware).concat(logger),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware)
+    // .concat(logger)
+    ,
     devTools: true
 })
 

@@ -5,7 +5,9 @@ export enum ETagType {
     COURSE = "Courses",
     USER = "User",
     ORDER = "Order",
-    PAYMENT_COURSES = "PaymentCourses"
+    PAYMENT_COURSES = "PaymentCourses",
+    TASK = "Task",
+    RESPONSE_TASK = "ResponseTask"
 }
 
 

@@ -127,7 +127,6 @@ export const AddForm = (): ReactElement => {
                     />
                 </Form.Item>
                 <Button htmlType='submit'>Добавить</Button>
-
             </Form>
         </>
     )

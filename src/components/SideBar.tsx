@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { EUserRole } from "../models/Enums";
 import { useAuth } from "../utils/hooks/useAuth";
 import { EAppRoutes } from "../page/Router";
-import { AlertTwoTone, BookOutlined, PieChartOutlined, UsbOutlined } from "@ant-design/icons";
+import { AlertTwoTone, BookOutlined, BugOutlined, CiOutlined, GifOutlined, PieChartOutlined, UsbOutlined } from "@ant-design/icons";
 
 
 type MenuItem = Required<MenuProps>["items"][number] & {
@@ -61,7 +61,27 @@ export default function Sidebar() {
                     label: "Управ. тасками",
                     onClick: () => navigate(EAppRoutes.MANAGE_TASK),
                 },
+                {
+                    key: EAppRoutes.MANAGE_ANSWER,
+                    icon: <BookOutlined />,
+                    label: "Управ. ответами",
+                    onClick: () => navigate(EAppRoutes.MANAGE_ANSWER),
+                },
             ]),
+            ...withCondition(role === EUserRole.USER, [
+                {
+                    key: EAppRoutes.MY_COURSES,
+                    icon: <CiOutlined />,
+                    label: "Мои курсы",
+                    onClick: () => navigate(EAppRoutes.MY_COURSES),
+                },
+                {
+                    key: EAppRoutes.MY_TASK,
+                    icon: <BugOutlined />,
+                    label: "Мои Задачи",
+                    onClick: () => navigate(EAppRoutes.MY_TASK),
+                },
+            ])
         ],
         [isAuthorized, navigate, role]
     );

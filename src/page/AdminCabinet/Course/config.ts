@@ -5,7 +5,7 @@ import { ICourseResult } from "../../../service/queries/usetGetCourses";
 
 export const columns: IEditableColumnProps<ICourseResult>[] = [
     {
-        title: "ID пользователя",
+        title: "ID курса",
         dataIndex: "id",
     },
     {

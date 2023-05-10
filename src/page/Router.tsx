@@ -17,6 +17,9 @@ import CoursePage from "./AdminCabinet/Course";
 import UsersPage from "./AdminCabinet/Users";
 import PaymentManagmentPage from "./AdminCabinet/PaymentManagment";
 import ManageTask from "./AdminCabinet/ManageTask/ManageTask";
+import { MyCoursePage } from "./UserCabinet/MyCourses/MyCoursesPage";
+import { MyTaskPage } from "./UserCabinet/MyTasks/MyTaskPage";
+import { ManageAnswerPage } from "./AdminCabinet/ManageAnswer/ManageAnswerPage";
 
 const StyledLayout = styled(PageLayout)`
   display: block;
@@ -34,6 +37,10 @@ export enum EAppRoutes {
     MANAGE_USERS = "/manage-users",
     MANAGE_PAYMENT = "/manage-payments",
     MANAGE_TASK = "/manage-task",
+    MY_TASK = "/my-task",
+    MY_COURSES = "/my-courses",
+    MANAGE_ANSWER = "/manage-answer"
+
 
 }
 
@@ -56,7 +63,8 @@ export const Routing = (): ReactElement => {
                                 <Route >
                                     <Route path={EAppRoutes.AUTH} element={<Navigate to={EAppRoutes.PROFILE} />} />
                                     <Route path={EAppRoutes.PROFILE} element={<Profile />} />
-
+                                    <Route path={EAppRoutes.MY_COURSES} element={<MyCoursePage />} />
+                                    <Route path={EAppRoutes.MY_TASK} element={<MyTaskPage />} />
                                 </Route> : null
                             }
 
@@ -68,6 +76,8 @@ export const Routing = (): ReactElement => {
                                     <Route path={EAppRoutes.MANAGE_USERS} element={<UsersPage />} />
                                     <Route path={EAppRoutes.MANAGE_PAYMENT} element={<PaymentManagmentPage />} />
                                     <Route path={EAppRoutes.MANAGE_TASK} element={<ManageTask />} />
+                                    <Route path={EAppRoutes.MANAGE_ANSWER} element={<ManageAnswerPage />} />
+
 
                                 </Route> : null
                             }
